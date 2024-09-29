@@ -1,78 +1,61 @@
-/**
- * Portfolio component
- *
- * Highlights some of  your creations. These can be designs, websites,
- * open source contributions, articles you've written and more.
- *
- * This is a great area for you to to continually add to and refine
- * as you continue to learn and create.
- */
-
 import React from "react";
-
-/**
- * Desk image
- *
- * Below is a sample desk image. Feel free to update this to an image of your choice,
- * updating below imageAltText to string that represents what you see in that image.
- *
- * Need an image? Check out https://unsplash.com to download a photo you
- * freely use on your site.
- */
 import image from "../images/design-desk.jpeg";
 
 const imageAltText = "desktop with books and laptop";
 
-/**
- * Project list
- *
- * An array of objects that will be used to display for your project
- * links section. Below is a sample, update to reflect links you'd like to highlight.
- */
 const projectList = [
   {
-    title: "10 Things To Know About Azure Static Web Apps 🎉",
+    title: "Course Selling App 📗",
     description:
-      "Collaboration to create a beginner friendly article to help explain Azure Static Web Apps and tooling to get started.",
-    url: "https://dev.to/azure/10-things-to-know-about-azure-static-web-apps-3n4i",
+      "Developed a full-stack application that manages course offerings, featuring secure payment integration and JWT-based authentication.",
+    url: "", 
   },
   {
-    title: "Web Development for Beginners",
+    title: "Meme Palette",
     description:
-      "Contributed sketch note imagery to accompany each lesson. These help provide visual representation of what is being taught.",
-    url: "https://github.com/microsoft/web-dev-for-beginners",
+      "Created an interactive meme generator with image manipulation capabilities, enhancing user engagement.",
+    url: "https://memepalette.netlify.app",
   },
   {
-    title: "My Resume Site",
+    title: "My Resume",
     description:
-      "Created from Microsoft's resume workshop and deployed to GitHub pages. Includes my experience and design abilities.",
-    url: "https://github.com/microsoft/workshop-library/tree/main/full/build-resume-website",
+      "Download my resume to view my experience and design abilities.",
+    url: "https://drive.google.com/file/d/1FLkZMWsqfHVYCAV0KpjBcbxinOoQk2tx/view?usp=drive_link", 
   },
   {
-    title: "GitHub Codespaces and github.dev",
+    title: "E-Commerce Application 🛒",
     description:
-      "Video interview to explain when to use GitHub.dev versus GitHub Codespaces, and how best to use each tool.",
-    url: "https://www.youtube.com/watch?v=c3hHhRME_XI",
+      "Currently in progress, this fully functional e-commerce application features a user-friendly interface, product browsing, a shopping cart, and JWT-based authentication with OAuth for secure user access.",
+    url: "", // Add the URL once it's deployed
   },
 ];
+
 
 const Portfolio = () => {
   return (
     <section className="padding" id="portfolio">
-      <h2 style={{ textAlign: "center" }}>Portfolio</h2>
-      <div style={{ display: "flex", flexDirection: "row", paddingTop: "3rem" }}>
-        <div style={{ maxWidth: "40%", alignSelf: "center" }}>
+      <h2 style={{ textAlign: "center", marginBottom: "1.5rem" }}>Portfolio</h2>
+      <div style={{ display: "flex", flexDirection: "row", paddingTop: "3rem", flexWrap: "wrap", justifyContent: "center", gap: "2rem" }}>
+        <div style={{ maxWidth: "40%", flex: "1 1 300px", borderRadius: "8px", overflow: "hidden" }}>
           <img
             src={image}
-            style={{ height: "90%", width: "100%", objectFit: "cover" }}
+            style={{ height: "90%", width: "100%", objectFit: "cover", borderRadius: "8px" }}
             alt={imageAltText}
           />
         </div>
-        <div className="container">
+        <div className="container" style={{ flex: "1 1 300px", display: "flex", flexDirection: "column", alignItems: "center" }}>
           {projectList.map((project) => (
-            <div className="box" key={project.title}>
-              <a href={project.url} target="_blank" rel="noopener noreferrer">
-                <h3 style={{ flexBasis: "40px" }}>{project.title}</h3>
+            <div className="box" key={project.title} style={{ margin: "1rem", textAlign: "center", padding: "1rem", border: "1px solid #ccc", borderRadius: "8px", transition: "transform 0.3s" }}>
+              <a
+                href={project.url || "#"}
+                download={project.isDownload ? "Atharva_Resume.pdf" : undefined} // Use the flag to determine if it should download
+                target={project.url ? "_blank" : undefined} // Open in a new tab if there's a URL
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <h3 style={{ flexBasis: "40px", fontSize: "1.25rem", marginBottom: "0.5rem", transition: "color 0.3s", cursor: project.url ? "pointer" : "default" }}>
+                  {project.title}
+                </h3>
               </a>
               <p className="small">{project.description}</p>
             </div>
@@ -84,3 +67,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
